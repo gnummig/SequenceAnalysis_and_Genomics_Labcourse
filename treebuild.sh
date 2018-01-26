@@ -50,11 +50,11 @@ then
 	echo starting RAxML
 	date +%T
 	raxmlHPC-PTHREADS-SSE3 -T 3 -m PROTGAMMAWAG -s $1".GI_headers.nr90.aln.phy" -n tmp -p 12345 &&
-	mv RAxML_info.tmp  $1"RAxML_info" &&
-	mv RAxML_log.tmp $1"RAxML_log" &&
-	mv RAxML_bestTree.tmp $1"RAxML_bestTree" &&
-	mv RAxML_result.tmp $1"RAxML_result" &&
-	mv RAxML_parsimonyTree.tmp $1"RAxML_parsimonyTree"
+	mv RAxML_info.tmp  $1".RAxML_info" &&
+	mv RAxML_log.tmp $1".RAxML_log" &&
+	mv RAxML_bestTree.tmp $1".RAxML_bestTree" &&
+	mv RAxML_result.tmp $1".RAxML_result" &&
+	mv RAxML_parsimonyTree.tmp $1".RAxML_parsimonyTree"
 	echo finished RAxML
 	date +%T
 fi
