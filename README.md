@@ -14,9 +14,11 @@ call
 treebuild.sh subfolder/sequencedump
 ```
 
-use Gblock too filter out noise from the alignment:
+to use Gblock too filter out noise from the alignment, stop the treebuild when the raxm is running, and execute the wrapper:
 
 ``` 
 gblockWrapper.sh subfolder/sequencedump
 ```
+then call the treebuild again to continue to build the tree with the shortened alignment.
+
 
