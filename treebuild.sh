@@ -71,16 +71,33 @@ then
 fi
 echo 
 #if false
+# Make a maximum likelihood search and bootstrap analysis at once:
+# raxmlHPC-PTHREADS -f a -m PROTGAMMAWAG -p 12345 -x 12345 -# 20 -s myExample.aln.phy -n myExample.aln.20_bootstrapping.tree -T 4
 if [ ! -e  $1"bootstrap.RAxML_result" ] 
 then 
 	echo starting bootstrap RAxML
 	date +%T
-	raxmlHPC-PTHREADS-SSE3 -T 3 -f a -# 100 -m PROTGAMMAWAG -s $1".GI_headers.nr90.aln.phy" -n tmp -x 12345 -p 12345 &&
-	mv RAxML_info.tmp  $1"bootstrap.RAxML_info" &&
-	mv RAxML_log.tmp $1"bootstrap.RAxML_log" &&
-	mv RAxML_bestTree.tmp $1"bootstrap.RAxML_bestTree" &&
-	mv RAxML_result.tmp $1"bootstrap.RAxML_result" &&
-	mv RAxML_parsimonyTree.tmp $1"bootstrap.RAxML_parsimonyTree"
+	raxmlHPC-PTHREADS-SSE3 -T 3 -f a -# 100 -m PROTGAMMAWAG -s $1".GI_headers.nr90.aln.phy" -n tmp2 -x 12345 -p 12345 &&
+	mv RAxML_info.tmp2  $1".bootstrap.RAxML_info" &&
+	mv RAxML_log.tmp2 $1".bootstrap.RAxML_log" &&
+	mv RAxML_bestTree.tmp2 $1".bootstrap.RAxML_bestTree" &&
+	mv RAxML_result.tmp2 $1".bootstrap.RAxML_result" &&
+	mv RAxML_parsimonyTree.tmp2 $1".bootstrap.RAxML_parsimonyTree"
 	echo finished bootstrap RAxML
 	date +%T
 fi
+# make a  consensus tree
+if [ ! -e  $1"bootstrap.RAxML_result" ] 
+then 
+	echo starting bootstrap RAxML
+	date +%T
+	raxmlHPC-PTHREADS-SSE3 -T 3  -m PROTGAMMAWAG -s -J MR $1".GI_headers.nr90.aln.phy" -n tmp2  -p 12345 &&
+	mv RAxML_info.tmp2  $1".bootstrap.RAxML_info" &&
+	mv RAxML_log.tmp2 $1".bootstrap.RAxML_log" &&
+	mv RAxML_bestTree.tmp2 $1".bootstrap.RAxML_bestTree" &&
+	mv RAxML_result.tmp2 $1".bootstrap.RAxML_result" &&
+	mv RAxML_parsimonyTree.tmp2 $1".bootstrap.RAxML_parsimonyTree"
+	echo finished bootstrap RAxML
+	date +%T
+fi
+
