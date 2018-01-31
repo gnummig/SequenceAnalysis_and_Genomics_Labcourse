@@ -8,7 +8,7 @@ nw_labels $1".RAxML_result" > $1".RAxML_result_ids"
 #put the new labels to the tree
 nw_rename $1".RAxML_result" $1".RAxML.TAXA_TABLE_clean_sorted.txt" > $1".RAxML_result.sorted.tree"
 # process the 
-if [ ! -e $1".bootstrap.RAxML_result" ]
+if [ -e $1".bootstrap.RAxML_result" ]
 then 
 	nw_labels $1".bootstrap.RAxML_result" > $1".bootstrap.RAxML_result.ids"
 	# rename the labels
