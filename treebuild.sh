@@ -16,7 +16,7 @@ fi
 ./clean_taxa.sh $1".TAXA_TABLE.txt" > $1".TAXA_TABLE_clean.txt"
 if [ ! -e $1".GI_headers.fasta" ] 
 then 
-	echo 'changing the fasta to whatever'
+	echo 'swapping the fasta header'
 	perl change_fasta_headers.pl  $1".new_headers.fasta"  $1".TAXA_TABLE_clean.txt" >  tmp &&
 	mv tmp $1".GI_headers.fasta"
 fi
